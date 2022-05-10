@@ -66,7 +66,7 @@ for(k= p->posc_k(zc); k<p->knoz; ++k)// loop for body only
 {	
 
 
-	Fx= Fy= Fz=0;
+	Fx= Fy= Fz=1;
 	
  /*   for(k=0; k<p->knoz; ++k)
 	{
