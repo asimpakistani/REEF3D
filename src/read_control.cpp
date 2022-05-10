@@ -1250,6 +1250,9 @@ void lexer::read_control()
 				case 85: ++P85;
 						 clear(c,numint);
 						 break;
+				case 86: ++P86;
+						 clear(c,numint);
+						 break;
 				case 91: control>>P91;
 						 clear(c,numint);
 						 break;
@@ -2095,6 +2098,12 @@ void lexer::read_control()
 	Darray(P85_r,P85);
 	Darray(P85_cd,P85);
 	Darray(P85_cm,P85);
+	
+	Darray(P86_x,P86);
+	Darray(P86_y,P86);
+	Darray(P86_z,P86);
+	Darray(P86_r,P86);
+	Darray(P86_l,P86);
 
 	Darray(P121_x,P121);
 	Darray(P121_y,P121);
