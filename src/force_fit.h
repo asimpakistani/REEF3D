@@ -68,7 +68,7 @@ private:
     ofstream fout;
 
     // parallelisation
-    double xstart,ystart,xend,yend;
+    double xstart,ystart,zstart,xend,yend,zend;
 };
 
 #endif
