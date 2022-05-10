@@ -32,6 +32,7 @@ Author: Arun Kamath
 
 // bouyancy force
 
+/*
 for(k= p->posc_k(zc); k<p->knoz; ++k)// loop for body only
  {
   Fbouy= p->W1*p->W22*Fi[FIJK]*DZN[KP]; // rho*g*phi*dsig
@@ -55,6 +56,7 @@ for(k= p->posc_k(zc); k<p->knoz; ++k)// loop for body only
 	
 	Ffimx + = Ffimx;
  }
+ */
  
  /* ----------------------------------------------------------------------------------- */
  
@@ -66,7 +68,7 @@ for(k= p->posc_k(zc); k<p->knoz; ++k)// loop for body only
 
 	Fx= Fy= Fz=0;
 	
-    for(k=0; k<p->knoz; ++k)
+ /*   for(k=0; k<p->knoz; ++k)
 	{
         dudsig_= dudsig(p, c, pgc); 
      // double dudsig2_= dudsig(p, c, pgc); // cleanup alt ddsig. diff values, no change to force
@@ -114,4 +116,5 @@ for(k= p->posc_k(zc); k<p->knoz; ++k)// loop for body only
 	// store current eta value for gradient in next step
 	//eta2n=etan;
 	etan=c->eta(i,j);
+	*/
 }
