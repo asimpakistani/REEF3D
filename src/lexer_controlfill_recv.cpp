@@ -2621,11 +2621,11 @@ void lexer::ctrlrecv()
     dd++;
     P86_y[n] = dctrl[dd];
     dd++;
-	 P86_z[n] = dctrl[dd];
+	P86_z[n] = dctrl[dd];
     dd++;
-	 P86_r[n] = dctrl[dd];
+	P86_r[n] = dctrl[dd];
     dd++;
-	 P86_l[n] = dctrl[dd];
+	P86_l[n] = dctrl[dd];
     dd++;
     }
 	
