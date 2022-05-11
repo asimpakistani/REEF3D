@@ -43,7 +43,7 @@ void force_fit::ini(lexer *p, fdm_fnpf *c, ghostcell *pgc)
 	zc = p->P86_z[ID];
 	rc = p->P86_r[ID];
 	lc = p->P86_l[ID];
-
+	
     // Open files
     print_ini(p,c,pgc);
 
@@ -76,6 +76,7 @@ void force_fit::start(lexer *p, fdm_fnpf *c, ghostcell *pgc)
         i = p->posc_i(xc);
         j = p->posc_j(yc);
         k = p->posc_k(zc);
+        
 
         // Calculate force
         force_fit_force(p,c,pgc);

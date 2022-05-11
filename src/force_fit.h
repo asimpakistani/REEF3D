@@ -56,7 +56,7 @@ private:
 	double dvdxi(lexer*, fdm_fnpf*, ghostcell*);*/
 	
     // force fit variabes
-    double Fx,Fy,Fz, xc,yc,zc,rc,lc;
+    double Fx,Fy,Fz,Fbuoy,Fx1,Fy1,Fz1, xc,yc,zc,rc,lc;
 	//double *un, *u2n, *vn;
     const int ID;
     
