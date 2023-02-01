@@ -47,8 +47,6 @@ void bedshear::taubed(lexer *p, fdm * a, ghostcell *pgc, sediment_fdm *s)
 	int count;
 	double zval,fac,topoval,taukin,tauvel,density;
     
-    //pgc->start4(p,a->eddyv,1);
-    
     SLICELOOP4
     {
     
@@ -79,7 +77,7 @@ void bedshear::taubed(lexer *p, fdm * a, ghostcell *pgc, sediment_fdm *s)
         }
         
         
-    u_abs = sqrt(uvel*uvel + vvel*vvel);
+    u_abs = sqrt(uvel*uvel + vvel*vvel  + wvel*wvel);
 
     u_plus = (1.0/kappa)*log(30.0*(dist/ks));
 

@@ -254,6 +254,9 @@
           <File Name="nhflow_pressure.h"/>
         </VirtualDirectory>
         <VirtualDirectory Name="Momentum">
+          <VirtualDirectory Name="BC">
+            <File Name="nhflow_bcmom.h"/>
+          </VirtualDirectory>
           <File Name="nhflow_momentum.h"/>
           <File Name="nhflow_momentum_RK2.h"/>
           <File Name="nhflow_momentum_RK3.h"/>
@@ -1255,6 +1258,9 @@
           </VirtualDirectory>
         </VirtualDirectory>
         <VirtualDirectory Name="Momentum">
+          <VirtualDirectory Name="BC">
+            <File Name="nhflow_bcmom.cpp"/>
+          </VirtualDirectory>
           <File Name="nhflow_momentum_RK2.cpp"/>
           <File Name="nhflow_momentum_RK3.cpp"/>
         </VirtualDirectory>
@@ -1572,7 +1578,7 @@
         </VirtualDirectory>
         <VirtualDirectory Name="DirectForcing">
           <VirtualDirectory Name="Initialize">
-            <File Name="6DOF_df_position.cpp"/>
+            <File Name="6DOF_df_ini_position.cpp"/>
             <File Name="6DOF_df_ini_parameters.cpp"/>
             <File Name="6DOF_df_ini.cpp"/>
           </VirtualDirectory>
@@ -1598,8 +1604,8 @@
             <File Name="6DOF_df_ray.cpp"/>
           </VirtualDirectory>
           <VirtualDirectory Name="Forces">
+            <File Name="6DOF_df_forces_external.cpp"/>
             <File Name="6DOF_df_forces_stl.cpp"/>
-            <File Name="6DOF_df_forces.cpp"/>
           </VirtualDirectory>
           <VirtualDirectory Name="Geometry">
             <File Name="6DOF_df_triangle_switch_lsm.cpp"/>
@@ -1897,6 +1903,7 @@
         <File Name="gradient_dslweno.cpp"/>
       </VirtualDirectory>
       <VirtualDirectory Name="Initialize">
+        <File Name="ini_psi.cpp"/>
         <File Name="ini_vof_plic.cpp"/>
         <File Name="ini_droplet.cpp"/>
         <File Name="ini_hydrostatic.cpp"/>
@@ -2690,18 +2697,19 @@
           <File Name="iowave_active-beach.cpp"/>
           <File Name="iowave.cpp"/>
           <VirtualDirectory Name="SFLOW">
-            <File Name="iowave_2D_waterlevel.cpp"/>
-            <File Name="iowave_2D_wavegen.cpp"/>
-            <File Name="iowave_2D_relax.cpp"/>
-            <File Name="iowave_2D_precalc_ini.cpp"/>
-            <File Name="iowave_2D_precalc.cpp"/>
-            <File Name="iowave_2D_ini.cpp"/>
-            <File Name="iowave_2D_inflow.cpp"/>
-            <File Name="iowave_2D_fullini.cpp"/>
-            <File Name="iowave_2D_discharge.cpp"/>
-            <File Name="iowave_2D_active-beach.cpp"/>
+            <File Name="iowave_sflow_wavegen.cpp"/>
+            <File Name="iowave_sflow_waterlevel.cpp"/>
+            <File Name="iowave_sflow_relax.cpp"/>
+            <File Name="iowave_sflow_precalc_ini.cpp"/>
+            <File Name="iowave_sflow_precalc.cpp"/>
+            <File Name="iowave_sflow_ini.cpp"/>
+            <File Name="iowave_sflow_inflow.cpp"/>
+            <File Name="iowave_sflow_fullini.cpp"/>
+            <File Name="iowave_sflow_discharge.cpp"/>
+            <File Name="iowave_sflow_active-beach.cpp"/>
           </VirtualDirectory>
           <VirtualDirectory Name="NHFLOW">
+            <File Name="iowave_nhflow_velsource.cpp"/>
             <File Name="iowave_nhflow_precalc_decomp_time.cpp"/>
             <File Name="iowave_nhflow_precalc_decomp_space_dirichlet.cpp"/>
             <File Name="iowave_nhflow_precalc_decomp_space.cpp"/>
@@ -2731,12 +2739,18 @@
           </VirtualDirectory>
         </VirtualDirectory>
         <VirtualDirectory Name="ioFlow">
+          <VirtualDirectory Name="SFLOW">
+            <File Name="ioflow_sflow_waterlevel.cpp"/>
+            <File Name="ioflow_sflow_velsource.cpp"/>
+            <File Name="ioflow_sflow_discharge.cpp"/>
+            <File Name="inflow_sflow_inflow.cpp"/>
+          </VirtualDirectory>
           <VirtualDirectory Name="NHFLOW">
+            <File Name="ioflow_nhflow_velsource.cpp"/>
             <File Name="ioflow_nhflow_ini.cpp"/>
             <File Name="ioflow_nhflow_discharge.cpp"/>
             <File Name="ioflow_nhflow_inflow.cpp"/>
           </VirtualDirectory>
-          <File Name="ioflow_2Dwaterlevel.cpp"/>
           <File Name="ioflow_waterlevel.cpp"/>
           <File Name="ioflow_velsource.cpp"/>
           <File Name="ioflow_velini.cpp"/>
@@ -2750,9 +2764,7 @@
           <File Name="ioflow_inflow.cpp"/>
           <File Name="ioflow_f.cpp"/>
           <File Name="ioflow_discharge.cpp"/>
-          <File Name="ioflow_2Ddischarge.cpp"/>
           <File Name="inflow_hydrograph.cpp"/>
-          <File Name="inflow_2Dinflow.cpp"/>
         </VirtualDirectory>
         <VirtualDirectory Name="Gravity">
           <File Name="ioflow_gravity.cpp"/>

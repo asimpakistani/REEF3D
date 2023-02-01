@@ -35,12 +35,7 @@ sixdof_df::sixdof_df(lexer *p, fdm *a, ghostcell *pgc)
     number6DOF = 1;
     
     for (int nb = 0; nb < number6DOF; nb++)
-    {
-        p_df_obj.push_back(new sixdof_df_object(p,a,pgc,nb));
-    }
-    
-    
-    pdx = new ddweno_f_nug(p);
+    p_df_obj.push_back(new sixdof_df_object(p,a,pgc,nb));
 }
     
 sixdof_df::~sixdof_df()
@@ -50,9 +45,7 @@ sixdof_df::~sixdof_df()
 void sixdof_df::initialize(lexer *p, fdm *a, ghostcell *pgc, vector<net*>& pnet)
 {
     for (int nb = 0; nb < number6DOF; nb++)
-    {
-        p_df_obj[nb]->initialize(p, a, pgc, pnet);
-    }
+    p_df_obj[nb]->initialize(p, a, pgc, pnet);
 }
 	
 void sixdof_df::start(lexer*,fdm*,ghostcell*,double,vrans*,vector<net*>&)
@@ -82,7 +75,7 @@ void sixdof_df::start_forcing(lexer* p, fdm* a, ghostcell* pgc, vrans* pvrans, v
     for (int nb=0; nb<number6DOF;++nb)
     {
         // Calculate forces
-        //p_df_obj[nb]->forces_stl(p,a,pgc,alpha,uvel,vvel,wvel);
+        p_df_obj[nb]->forces_stl(p,a,pgc,alpha,uvel,vvel,wvel);
 
         // Advance body in time
         p_df_obj[nb]->solve_eqmotion(p,a,pgc,alpha,gamma,zeta,pvrans,pnet);
@@ -111,5 +104,5 @@ void sixdof_df::start_forcing(lexer* p, fdm* a, ghostcell* pgc, vrans* pvrans, v
     }
     
     // ghostcell update
-    //pgc->gcdf_update(p,a);
+    pgc->gcdf_update(p,a);
 }

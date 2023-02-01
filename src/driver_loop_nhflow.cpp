@@ -64,11 +64,9 @@ void driver::loop_nhflow()
 		cout<<"t/T: "<<p->simtime/p->wTp<<endl;
         }
         
-
         pflow->flowfile(p,a,pgc,pturb);
         pflow->wavegen_precalc(p,pgc);
         
-
         // Free Surface
         pnhfsf->start(p,d,pgc,pflow);
 			
@@ -77,7 +75,7 @@ void driver::loop_nhflow()
 		// Sediment Computation
         //psed->start_cfd(p,a,pgc,pflow,preto,psolv);
 
-        pnhfmom->start(p,d,pgc,pflow,pconvec,pdiff,pnhpress,psolv,pnhf,pnhfsf); 
+        pnhfmom->start(p,d,pgc,pflow,pnhfconvec,pdiff,pnhpress,psolv,pnhf,pnhfsf,pvrans); 
 
         //save previous timestep
         //pturb->ktimesave(p,a,pgc);

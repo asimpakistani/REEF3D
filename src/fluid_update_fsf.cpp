@@ -40,6 +40,7 @@ void fluid_update_fsf::start(lexer *p, fdm* a, ghostcell* pgc)
 {
 	double H=0.0;
     double H_fb=0.0;
+    double factor=1.0;
 	p->volume1=0.0;
 	p->volume2=0.0;
     
@@ -47,47 +48,35 @@ void fluid_update_fsf::start(lexer *p, fdm* a, ghostcell* pgc)
     iocheck=0;
 	iter=p->count;
     
-    if(p->j_dir==0)        
-    epsi = p->F45*(1.0/2.0)*(p->DRM+p->DTM);
-        
-    if(p->j_dir==1)
-    epsi = p->F45*(1.0/3.0)*(p->DRM+p->DSM+p->DTM);
-    
 	LOOP
 	{
-		if(a->phi(i,j,k)>epsi)
+        factor = 1.0;
+        
+        if(p->j_dir==0 && p->X46==1) 
+        if(a->fb(i,j,k) <- 0.5*(1.0/2.0)*(p->DRM+p->DTM))
+        factor = 2.0;
+        
+        if(p->j_dir==1 && p->X46==1)  
+        if(a->fb(i,j,k) <- 0.5*(1.0/3.0)*(p->DRM+p->DSM+p->DTM))
+        factor = 2.0;
+    
+		if(a->phi(i,j,k)>(p->psi*factor))
 		H=1.0;
 
-		if(a->phi(i,j,k)<-epsi)
+		if(a->phi(i,j,k)<-(p->psi*factor))
 		H=0.0;
 
-		if(fabs(a->phi(i,j,k))<=epsi)
-		H=0.5*(1.0 + a->phi(i,j,k)/epsi + (1.0/PI)*sin((PI*a->phi(i,j,k))/epsi));
+		if(fabs(a->phi(i,j,k))<=(p->psi*factor))
+		H=0.5*(1.0 + a->phi(i,j,k)/(p->psi*factor) + (1.0/PI)*sin((PI*a->phi(i,j,k))/(p->psi*factor)));
 
         // Construct floating body heaviside function if used
-        if (p->X10 == 1 && p->X13 == 2)
+        if (p->X10==1 && p->X13==2)
         {
             if(p->X15==1)
             {
-            // direct forcing
-            chi = p->X41*(1.0/3.0)*(p->DXN[IP]+p->DYN[JP]+p->DZN[KP]);
-
-            if (p->j_dir==0)
-            chi = p->X41*(1.0/2.0)*(p->DXN[IP] + p->DZN[KP]);
-            
-            /*
-            if(-a->fb(i,j,k)>chi)
-            H_fb=1.0;
-
-            if(-a->fb(i,j,k)<-chi)
-            H_fb=0.0;
-
-            if(fabs(a->fb(i,j,k))<=chi)
-            H_fb=0.5*(1.0 + -a->fb(i,j,k)/chi + (1.0/PI)*sin((PI*-a->fb(i,j,k))/chi));
-            */
             H_fb = a->fbh4(i,j,k);
 		
-            a->ro(i,j,k)= p->W_fb*H_fb + (1.0 - H_fb)*(ro_water*H +   ro_air*(1.0-H));
+             a->ro(i,j,k)= p->W_fb*H_fb + (1.0 - H_fb)*(ro_water*H +   ro_air*(1.0-H));
 		    a->visc(i,j,k)= visc_body*H_fb + (1.0 - H_fb)*(visc_water*H + visc_air*(1.0-H));
 
 		    p->volume1 += p->DXN[IP]*p->DYN[JP]*p->DZN[KP]*(H-(1.0-PORVAL4));
@@ -126,7 +115,6 @@ void fluid_update_fsf::start(lexer *p, fdm* a, ghostcell* pgc)
 	cout<<"Volume 2: "<<p->volume2<<endl;
     }
     ++iocheck;
-
 }
 
 int fluid_update_fsf::iocheck;

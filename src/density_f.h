@@ -44,7 +44,6 @@ public:
 	double H,H_fb,roval,phival;
 	int ii,jj,kk;
 	const double epsi,eps;
-    double psi;
     double r,s;
 
 };

@@ -90,9 +90,9 @@ void driver::loop_cfd_df(fdm* a)
         psed->start_cfd(p,a,pgc,pflow,preto,psolv);
 
         pflow->u_relax(p,a,pgc,a->u);
-		pflow->v_relax(p,a,pgc,a->v);
-		pflow->w_relax(p,a,pgc,a->w);
-		pfsf->update(p,a,pgc,a->phi);
+        pflow->v_relax(p,a,pgc,a->v);
+        pflow->w_relax(p,a,pgc,a->w);
+        pfsf->update(p,a,pgc,a->phi);
 	
         // Momentum and 6DOF motion
         pmom_df->starti(p,a,pgc,p6dof_df,pvrans,pnet,pfsi);
@@ -129,7 +129,7 @@ void driver::loop_cfd_df(fdm* a)
             {
             if(p->B90>0)
             cout<<"wavegentime: "<<setprecision(3)<<p->wavetime<<endl;
-
+            cout<<"fbtime: "<<setprecision(3)<<p->fbtime<<endl;
             cout<<"reinitime: "<<setprecision(3)<<p->reinitime<<endl;
             cout<<"gctime: "<<setprecision(3)<<p->gctime<<"\t average gctime: "<<setprecision(3)<<p->gcmeantime<<endl;
             cout<<"Xtime: "<<setprecision(3)<<p->xtime<<"\t average Xtime: "<<setprecision(3)<<p->Xmeantime<<endl;
@@ -142,11 +142,14 @@ void driver::loop_cfd_df(fdm* a)
         maxlog(p);
         solverlog(p);
         }
+    p->utime=p->vtime=p->wtime=0.0;
     p->gctime=0.0;
     p->xtime=0.0;
 	p->reinitime=0.0;
 	p->wavetime=0.0;
 	p->field4time=0.0;
+    p->fsitime=0.0;
+    p->fbtime=0.0;
 
     stop(p,a,pgc);
 	}

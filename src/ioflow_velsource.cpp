@@ -115,16 +115,4 @@ void  ioflow_f::ksource(lexer *p, fdm *a, ghostcell *pgc, vrans *pvrans)
     pvrans->w_source(p,a);
 }
 
-void ioflow_f::isource2D(lexer *p, fdm2D* b, ghostcell* pgc)
-{
-	SLICELOOP1
-	b->F(i,j)=0.0;
-}
-
-void ioflow_f::jsource2D(lexer *p, fdm2D* b, ghostcell* pgc)
-{
-	SLICELOOP2
-	b->G(i,j)=0.0;
-}
-
 
